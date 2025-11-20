@@ -1,11 +1,17 @@
 <div class="article-card" [class.on-sale]="article.isOnSale">
-  <img [src]="article.imageUrl" [alt]="article.name" class="article-image">
+  <img class="article-image" [src]="article.imageUrl" [alt]="article.name">
+  <h3>{{ article.name }}</h3>
 
-  <h2>{{ article.name }}</h2>
-  <p class="price">{{ article.price | currency:'EUR' }}</p>
+  <!-- Preu amb classe condicional -->
+  <p class="price" [ngClass]="{ 'not-available': !article.isOnSale }">
+    {{ article.price | currency:'EUR' }}
+  </p>  
+
+  <!-- Etiqueta de venda -->
   <p *ngIf="article.isOnSale" class="sale-label">En venda!</p>
 
-  <div class="quantity-controls">
+  <!-- Controls de quantitat -->
+  <div *ngIf="article.isOnSale" class="quantity-controls">
     <button (click)="decrement()" [disabled]="article.quantityInCart === 0">-</button>
     <span>{{ article.quantityInCart }}</span>
     <button (click)="increment()">+</button>

@@ -2,48 +2,54 @@
   border: 2px solid #ccc;
   padding: 1rem;
   border-radius: 10px;
-  max-width: 300px;
+  width: 300px;
+  height: 400px;
   text-align: center;
   transition: background-color 0.3s;
 
   &.on-sale {
-    background-color: #e0ffe0; // color diferent si està en venda
+    background-color: #e0ffe0;
   }
 
   .article-image {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
+    width: 100%;       // ocupa tot l'ample del card
+    height: 240px;     // alt fix dins del card
+    object-fit: cover; // ajusta la imatge sense retallar
+    display: block;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
   }
 
   .price {
     font-weight: bold;
     margin: 0.5rem 0;
+
+    &.not-available {
+      color: gray;  // preu gris si no està a la venda
+    }
   }
 
   .sale-label {
-    color: #ff0000;
+    color: red;
     font-weight: bold;
   }
 
   .quantity-controls {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 0.5rem;
     margin-top: 1rem;
 
     button {
       width: 30px;
       height: 30px;
-      font-size: 1.2rem;
       cursor: pointer;
     }
 
     span {
       min-width: 20px;
-      display: inline-block;
       text-align: center;
+      display: inline-block;
     }
   }
 }

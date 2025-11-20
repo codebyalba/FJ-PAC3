@@ -5,7 +5,7 @@ import { Article } from '../../models/article.model';
 @Component({
   selector: 'app-article-item',
   standalone: true,
-  imports: [CommonModule], // ✅ això inclou ngIf, ngFor i currency pipe
+  imports: [CommonModule, CurrencyPipe], // ✅ això inclou ngIf, ngFor i currency pipe
   templateUrl: './article-item.html',
   styleUrls: ['./article-item.scss']
 })
