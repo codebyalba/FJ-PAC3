@@ -15,23 +15,22 @@ import { RouterOutlet } from '@angular/router';
 export class App {
   title = 'Ecommerce';
 
-  articles = [
+  articles: Article[] = [
     {
       name: 'Reloj de lujo',
-      imageUrl: 'assets/img/elegant-watch-with-silver-golden-chain-isolated.jpg',
+      imageUrl: 'assets/img/elegant-watch.jpg',  // ✅ correcte
       price: 129.99,
       isOnSale: true,
       quantityInCart: 0
     },
     {
       name: 'Auriculares Bluetooth',
-      imageUrl: 'assets/img/headphones-displayed-against-dark-background.jpg',
+      imageUrl: 'assets/img/headphones.jpg',  // ✅ correcte
       price: 79.99,
       isOnSale: false,
       quantityInCart: 0
     }
   ];
-
   trackByArticleName(index: number, article: Article) {
     return article.name;
   }
