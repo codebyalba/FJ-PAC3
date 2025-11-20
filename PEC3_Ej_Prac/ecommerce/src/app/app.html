@@ -7,17 +7,14 @@
 <!-- * * * * * * * to get started with your project! * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<main>
-  <h1>{{ title }}</h1>
+<app-navbar></app-navbar>
 
-  <div class="articles">
-    <app-article-item
-      *ngFor="let article of articles; trackBy: trackByArticleName"
-      [article]="article">
-    </app-article-item>
-  </div>
-  
 
+<main class="container">
+  <h1>Shop</h1>
+  <article-list *ngIf="view === 'list'"></article-list>
+  <article-new-template *ngIf="view === 'template'"></article-new-template>
+  <article-new-reactive *ngIf="view === 'reactive'"></article-new-reactive>
 </main>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
@@ -26,6 +23,3 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-
-<router-outlet/>
