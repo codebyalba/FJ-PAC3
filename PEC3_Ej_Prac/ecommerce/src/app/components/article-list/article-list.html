@@ -1,1 +1,6 @@
-<p>article-list works!</p>
+<div class="articles">
+    <app-article-item
+      *ngFor="let article of articles; trackBy: trackByArticleName"
+      [article]="article">
+    </app-article-item>
+  </div>
