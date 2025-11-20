@@ -1,37 +1,33 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ArticleItem } from './components/article-item/article-item';
-import { Article } from './models/article.model';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common'; // ← important!
+import { ArticleList } from './components/article-list/article-list';
+import { ArticleNewTemplate } from './components/article-new-template/article-new-template';
+import { ArticleNewReactive } from './components/article-new-reactive/article-new-reactive';
+import { Navbar } from './components/navbar/navbar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, ArticleItem, RouterOutlet],
-  templateUrl: './app.html',
-  styleUrls: ['./app.scss']
+  imports: [Navbar, ArticleNewTemplate, CommonModule, ArticleList, ArticleNewReactive],
+  template: `
+    <app-navbar (navigate)="onNavigate($event)"></app-navbar>
+
+    <main class="container">
+      <article-list *ngIf="view === 'list'"></article-list>
+      <article-new-template *ngIf="view === 'template'"></article-new-template>
+      <article-new-reactive *ngIf="view === 'reactive'"></article-new-reactive>
+    </main>
+  `
 })
-
 export class App {
-  title = 'Ecommerce';
+  view: 'list' | 'template' | 'reactive' = 'list';
 
-  articles: Article[] = [
-    {
-      name: 'Reloj de lujo',
-      imageUrl: 'assets/img/elegant-watch.jpg',  // ✅ correcte
-      price: 129.99,
-      isOnSale: true,
-      quantityInCart: 0
-    },
-    {
-      name: 'Auriculares Bluetooth',
-      imageUrl: 'assets/img/headphones.jpg',  // ✅ correcte
-      price: 79.99,
-      isOnSale: false,
-      quantityInCart: 0
+  onNavigate(page: string) {
+    switch(page) {
+      case 'home':
+      case 'articles': this.view = 'list'; break;
+      case 'template': this.view = 'template'; break;
+      case 'reactive': this.view = 'reactive'; break;
     }
-  ];
-  trackByArticleName(index: number, article: Article) {
-    return article.name;
   }
 }
